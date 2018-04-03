@@ -13,13 +13,20 @@ restService.use(
 
 restService.use(bodyParser.json());
 
-restService.post("/echo", function(req, res) {
+restService.post("/echo", function(req, res) 
+{
   var speech =
     req.body.result &&
-    req.body.result.parameters &&
-    req.body.result.parameters.echoText
+    req.body.result.parameters 
       ? req.body.result.action
       : "Seems like some problem. Speak again.";
+	switch (req.body.result.action.toLowerCase())
+	{
+		case "trs":
+      speech =
+        'Train running status of '+req.body.result.parameters.Train +' is:';
+      break;
+	}
   return res.json({
     speech: speech,
     displayText: speech,
