@@ -23,9 +23,22 @@ restService.post("/echo", function(req, res)
 	switch (req.body.result.action.toLowerCase())
 	{
 		case "trs":
-      speech =
-        'Train running status of '+req.body.result.parameters.Train +' is:';
-      break;
+					speech = 'Train running status of '+req.body.result.parameters.Train +' is: ';
+					$.ajax(
+					{
+						type : 'GET',
+						contentType : 'application/json',
+						url : "https://api.railwayapi.com/v2/route/train/16589/apikey/qv6maolyg3/",
+						success : function(data)
+						{
+							speech += data.response_code;
+						},
+						error: function(err) 
+						{
+							speech = "Seems like some problem."
+						}
+					});
+		break;
 	}
   return res.json({
     speech: speech,
