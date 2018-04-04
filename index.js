@@ -24,7 +24,7 @@ restService.post("/echo", function(req, res)
 	{
 		case "trs":
 					speech = 'Train running status of '+req.body.result.parameters.Train +' is: ';
-					$.ajax(
+					/*$.ajax(
 					{
 						type : 'GET',
 						contentType : 'application/json',
@@ -37,7 +37,7 @@ restService.post("/echo", function(req, res)
 						{
 							speech = "Seems like some problem."
 						}
-					});
+					});*/
 		break;
 	}
   return res.json({
