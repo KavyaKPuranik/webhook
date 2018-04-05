@@ -21,7 +21,7 @@ restService.post("/echo", function(req, res)
 	switch (req.body.result.action.toLowerCase())
 	{
 		case "trs":
-					speech = 'Train running status of '+req.body.result.parameters.Train +' is: ';
+					speech = 'Tfis will be changed '+req.body.result.parameters.Train ;
 					/*$.ajax(
 					{
 						type : 'GET',
@@ -36,17 +36,23 @@ restService.post("/echo", function(req, res)
 							speech = "Seems like some problem."
 						}
 					});*/
-					var request = require('request'),  
-						//sys = require('sys');
+					var options = 
+					{
+					  host: 'https://api.railwayapi.com/v2/',
+					  port: 80,
+					  path: 'route/train/16589/apikey/qv6maolyg3/',
+					  method: 'GET'
+					};
 
-					request({ uri:'http://www.google.com' }, function (error, response, body) {  
-					  if (error && response.statusCode !== 200) {
-						speech = 'Error when contacting google.com';
-					  }
-
-					  // Print the google web page.
-					  //sys.puts(body);
-					  speech = response.statusCode;
+					http.request(options, function(res) {
+					  console.log('STATUS: ' + res.statusCode);
+					  console.log('HEADERS: ' + JSON.stringify(res.headers));
+					  res.setEncoding('utf8');
+					  res.on('data', function (chunk) {
+						console.log('BODY: ' + chunk);
+					  speech = res.statusCode;
+					  });
+					}).end();
 					});
 		break;
 	}
