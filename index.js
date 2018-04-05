@@ -21,7 +21,7 @@ restService.post("/echo", function(req, res)
 	switch (req.body.result.action.toLowerCase())
 	{
 		case "trs":
-					speech = 'Tfis will be changed '+req.body.result.parameters.Train ;
+					speech = 'This will be changed '+req.body.result.parameters.Train ;
 					/*$.ajax(
 					{
 						type : 'GET',
@@ -50,7 +50,7 @@ restService.post("/echo", function(req, res)
 					  res.setEncoding('utf8');
 					  res.on('data', function (chunk) {
 						console.log('BODY: ' + chunk);
-					  speech = res.statusCode;
+					  //speech = res.statusCode;
 					  });
 					}).end();
 					});
