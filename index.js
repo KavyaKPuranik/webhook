@@ -15,11 +15,9 @@ restService.use(bodyParser.json());
 
 restService.post("/echo", function(req, res) 
 {
-  var speech =
-    req.body.result &&
-    req.body.result.parameters 
-      ? req.body.result.action
-      : "Seems like some problem. Speak again.";
+//  var speech =    req.body.result &&    req.body.result.parameters       ? req.body.result.action
+//      : "Seems like some problem. Speak again.";
+	var speech = "New test";
 	switch (req.body.result.action.toLowerCase())
 	{
 		case "trs":
@@ -59,7 +57,7 @@ restService.post("/echo", function(req, res)
   });
 });
 
-restService.post("/audio", function(req, res) {
+/*restService.post("/audio", function(req, res) {
   var speech = "";
   switch (req.body.result.parameters.AudioSample.toLowerCase()) {
     //Speech Synthesis Markup Language 
@@ -225,7 +223,7 @@ restService.post("/slack-test", function(req, res) {
       slack: slack_message
     }
   });
-});
+});*/
 
 restService.listen(process.env.PORT || 8000, function() {
   console.log("Server up and listening");
